@@ -1,0 +1,7 @@
+{
+	"name" : "core",
+	"chef_type" : "role",
+	"json_class" : "Chef::Role",
+	"chef_environment" : "_default",
+	"run_list" : ["apt"]
+}
