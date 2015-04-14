@@ -1,5 +1,0 @@
-DEPENDENCIES
-  apt (~> 2.6.1)
-
-GRAPH
-  apt (2.6.1)

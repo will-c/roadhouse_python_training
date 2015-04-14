@@ -14,16 +14,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.memory = 1024
     v.cpus = 2
   end
-  config.berkshelf.enabled = true
-  config.berkshelf.berksfile_path = "ops/config/Berksfile"
 
-  # Basic provisioning
-  config.vm.provision "chef_zero" do |chef|
-    chef.cookbooks_path = "ops/config"
-    chef.roles_path = "ops/dna/roles"
-
-    chef.add_role "core"
-  end
+  # Run basic_setup script from above
+  config.vm.provision "shell", path: "ops/config/basic_setup.sh"
   
   # Use docker container for local database
   config.vm.provision "docker", run: "always" do |d|
@@ -32,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Forward ports   
-  config.vm.network "forwarded_port", guest: 5432, host: 5432   #postgres
+  config.vm.network "forwarded_port", guest: 5434, host: 5432   #postgres
   
 
   
