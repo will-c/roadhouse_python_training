@@ -1,5 +1,6 @@
-# data-training-module
-Data, code, and configurations for the AIT Data/SQL/Python training module
+# roadhouse
+
+Our previous tools were just bouncers. PostgreSQL and Python are like a bouncer with a PhD.
 
 
 ## Setup Instructions
