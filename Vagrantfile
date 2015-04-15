@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Forward ports   
-  config.vm.network "forwarded_port", guest: 5434, host: 5432   #postgres
+  config.vm.network "forwarded_port", guest: 5432, host: 5434   #postgres
   
 
   

@@ -23,6 +23,13 @@ Data, code, and configurations for the AIT Data/SQL/Python training module
 0. `cd c:\projects\data-training` to change the working directory of your command prompt to the root of the data-training project
 0. `vagrant up`. This will start the provisioning process for the virtual machine that will be used for this project. The first time you do this it will do some stuff...
 
+- Add data where the thing can get to it
+
+- Connect putty to test
+
+- Create tunnel in putty
+
+- Connect pgadmin via tunnel
 
 
 
