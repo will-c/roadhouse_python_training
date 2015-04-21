@@ -17,16 +17,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Run basic_setup script from above
   config.vm.provision "shell", path: "ops/config/basic_setup.sh"
+
+  # Create docker data container
+  config.vm.provision "docker" do |d|
+    d.pull_images 'postgres'
+    d.run 'postgres-data',
+      image: "postgres",
+      args: "-v '/var/lib/postgresql/data'",
+      cmd: "bash -l"
+  end
   
   # Use docker container for local database
   config.vm.provision "docker", run: "always" do |d|
-    d.pull_images 'postgres'
-    d.run 'postgres:9.3', args: "-e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -d --name postgres -p 5432:5432"
+    d.run 'postgres', 
+    image: "postgres",
+    args: "--volumes-from=postgres-data -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -d --name postgres -p 5432:5432"
   end
 
   # Forward ports   
-  config.vm.network "forwarded_port", guest: 5432, host: 5434   #postgres
-  
-
-  
+  config.vm.network "forwarded_port", guest: 5432, host: 5434   #postgres 
+ 
 end
